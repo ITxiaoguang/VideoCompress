@@ -6,19 +6,19 @@
 ### 自带`VideoCompressDialog`弹窗，用法超级简单：
 
 ```java
-String inputFilePath = "输入你需要转码的音频地址";
+String inputFilePath = "输入你需要压缩的视频地址";
 VideoCompressDialog dialog = new VideoCompressDialog(this);
 dialog.setInputPath(inputFilePath);
 dialog.setCallback(new VideoCompressDialog.OnCallback() {
 
     @Override
     public void success(String successPath) {
-        Toast.makeText(MainActivity.this, "成功，path： " + successPath, Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "压缩成功，path： " + successPath, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void fail(int code, String message) {
-        Toast.makeText(MainActivity.this, "失败，message： " + message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "压缩失败，message： " + message, Toast.LENGTH_SHORT).show();
     }
 });
 dialog.show();
@@ -101,19 +101,19 @@ public void onRequestPermissionsResult(int requestCode, String[] permissions, in
 自带`VideoCompressDialog`弹窗，用法超级简单：
 
 ```java
-String inputFilePath = "输入你需要转码的音频地址";
+String inputFilePath = "输入你需要压缩的视频地址";
 VideoCompressDialog dialog = new VideoCompressDialog(this);
 dialog.setInputPath(inputFilePath);
 dialog.setCallback(new VideoCompressDialog.OnCallback() {
 
     @Override
     public void success(String successPath) {
-        Toast.makeText(MainActivity.this, "成功，path： " + successPath, Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "压缩成功，path： " + successPath, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void fail(int code, String message) {
-        Toast.makeText(MainActivity.this, "失败，message： " + message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "压缩失败，message： " + message, Toast.LENGTH_SHORT).show();
     }
 });
 dialog.show();
