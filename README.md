@@ -2,11 +2,6 @@
 # 一款快速、高效的视频压缩工具。A fast and efficient video compression tool.
 [![](https://jitpack.io/v/ITxiaoguang/VideoCompress.svg)](https://jitpack.io/#ITxiaoguang/VideoCompress)
 
-
-### 用FFmpeg实现转码。
-
-### 支持音频格式转换成mp3格式的工具（m3u8除外）。
-
 ## 如何添加
 ### Gradle添加：
 #### 1.在Project的`build.gradle`中添加仓库地址
