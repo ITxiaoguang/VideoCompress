@@ -2,6 +2,28 @@
 # 一款快速、高效的视频压缩工具。A fast and efficient video compression tool.
 [![](https://jitpack.io/v/ITxiaoguang/VideoCompress.svg)](https://jitpack.io/#ITxiaoguang/VideoCompress)
 
+
+### 自带`VideoCompressDialog`弹窗，用法超级简单：
+
+```java
+String inputFilePath = "输入你需要转码的音频地址";
+VideoCompressDialog dialog = new VideoCompressDialog(this);
+dialog.setInputPath(inputFilePath);
+dialog.setCallback(new VideoCompressDialog.OnCallback() {
+
+    @Override
+    public void success(String successPath) {
+        Toast.makeText(MainActivity.this, "成功，path： " + successPath, Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void fail(int code, String message) {
+        Toast.makeText(MainActivity.this, "失败，message： " + message, Toast.LENGTH_SHORT).show();
+    }
+});
+dialog.show();
+```
+
 ## 如何添加
 ### Gradle添加：
 #### 1.在Project的`build.gradle`中添加仓库地址
@@ -17,7 +39,6 @@ allprojects {
 
 #### 2.在Module目录下的`build.gradle`中添加依赖
 
-
 [![](https://jitpack.io/v/ITxiaoguang/VideoCompress.svg)](https://jitpack.io/#ITxiaoguang/VideoCompress)
 
 ``` gradle
@@ -26,13 +47,21 @@ dependencies {
 }
 ```
 
-#### 3.`AndroidManifest.xml`加上读写权限，代码里并请求读写权限
+#### 3.加上Android10.0 需要在`AndroidManifest.xml`文件中`application`出加上
+```xml
+<application
+  android:requestLegacyExternalStorage="true"
+  ...
+  />
+```
+
+#### 4.`AndroidManifest.xml`加上读写权限，代码里并请求读写权限
 ```xml
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
 
-#### 4.请求读写权限
+#### 5.请求读写权限
 ```java
 private void initPermission() {
     //检查相机权限
@@ -50,12 +79,23 @@ private void initPermission() {
 }
 ```
 
-#### 5.加上Android10.0 需要在`AndroidManifest.xml`文件中`application`出加上
-```xml
-<application
-  android:requestLegacyExternalStorage="true"
-  ...
-  />
+#### 6.权限回调
+```java
+@Override
+public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
+    switch (requestCode) {
+        case REQUEST_CODE_PERMISSION_CAMERA:
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                // Permission Granted 授予权限
+                // todo 用户同意了权限申请 打开文件选择器
+            } else {
+                // Permission Denied 权限被拒绝
+                Toast.makeText(this, "初始化文件选择器失败,读取文件权限被拒绝", Toast.LENGTH_SHORT).show();
+            }
+            break;
+    }
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+}
 ```
 
 自带`VideoCompressDialog`弹窗，用法超级简单：
