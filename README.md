@@ -32,7 +32,25 @@ dependencies {
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 ```
 
-#### 4.加上Android10.0 需要在`AndroidManifest.xml`文件中`application`出加上
+#### 4.请求读写权限
+```java
+private void initPermission() {
+    //检查相机权限
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            //没有相机权限
+            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
+                Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_CODE_PERMISSION_CAMERA);
+        } else {
+            // todo 打开文件选择器
+        }
+    } else {
+        // todo 打开文件选择器
+    }
+}
+```
+
+#### 5.加上Android10.0 需要在`AndroidManifest.xml`文件中`application`出加上
 ```xml
 <application
   android:requestLegacyExternalStorage="true"
@@ -65,25 +83,7 @@ dialog.show();
 
 ## 推荐使用文件选择器选择文件 --> [文件选择器](https://github.com/ITxiaoguang/FilePicker)
 
-#### 1.请求读写权限
-```java
-private void initPermission() {
-    //检查相机权限
-    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-        if (checkSelfPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-            //没有相机权限
-            requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE,
-                Manifest.permission.READ_EXTERNAL_STORAGE}, REQUEST_CODE_PERMISSION_CAMERA);
-        } else {
-            filePicker();// 打开文件选择器
-        }
-    } else {
-        filePicker();// 打开文件选择器
-    }
-}
-```
-
-#### 2.选择文件
+#### 1.选择文件
 ```java
 private void filePicker() {
     String[] zips = {"zip", "rar"};
@@ -115,7 +115,7 @@ private void filePicker() {
 }
 ```
 
-#### 3.回调
+#### 2.回调
 ```java
 @Override
 public void onActivityResult(int requestCode, int resultCode, Intent data) {
