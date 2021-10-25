@@ -26,7 +26,7 @@ dependencies {
 }
 ```
 
-#### 3.`AndroidManifest.xml`加上读写权限，代码里并请求读写权限，如有不明请看demo
+#### 3.`AndroidManifest.xml`加上读写权限，代码里并请求读写权限
 ```xml
 <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
