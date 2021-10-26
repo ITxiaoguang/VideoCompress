@@ -113,8 +113,8 @@ public void onRequestPermissionsResult(int requestCode, String[] permissions, in
 // String outputPath = cameraPath + System.currentTimeMillis() + ".mp4";
 
 VideoCompressDialog dialog = new VideoCompressDialog(this);
-dialog.setInputPath(filePath);
-// dialog.setOutputPath(outputPath);// 你想导出的地址 默认输出路径：包名/cache/videoCompress/compressedMp4.mp4
+dialog.setInputPath(inputPath);// 输入视频地址
+// dialog.setOutputPath(outputPath);// 输出视频地址 默认输出路径：包名/cache/videoCompress/compressedMp4.mp4
 dialog.setCallback(new VideoCompressDialog.OnCallback() {
     @Override
     public void success(String successPath) {
@@ -132,6 +132,8 @@ dialog.show();
 ### 完整用法：
 
 ```java
+// inputPath 输入视频地址
+// outputPath 输出视频地址
 VideoCompressTask task = VideoCompress.compressVideoLow(inputPath, outputPath, new VideoCompress.CompressListener() {
     @Override
     public void onStart() {
