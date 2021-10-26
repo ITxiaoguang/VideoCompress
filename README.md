@@ -2,23 +2,27 @@
 # 一款快速、高效的视频压缩工具。A fast and efficient video compression tool.
 [![](https://jitpack.io/v/ITxiaoguang/VideoCompress.svg)](https://jitpack.io/#ITxiaoguang/VideoCompress)
 
+### 支持自定义输出路径`outputPath`
 
 ### 自带`VideoCompressDialog`弹窗，用法超级简单：
 
 ```java
-String inputFilePath = "输入你需要压缩的视频地址";
-VideoCompressDialog dialog = new VideoCompressDialog(this);
-dialog.setInputPath(inputFilePath);
-dialog.setCallback(new VideoCompressDialog.OnCallback() {
+// String cameraPath = Environment.getExternalStorageDirectory().getPath() + "/DCIM/Camera/";
+// VideoCompressDialog.mkdir(cameraPath);
+// String outputPath = cameraPath + System.currentTimeMillis() + ".mp4";
 
+VideoCompressDialog dialog = new VideoCompressDialog(this);
+dialog.setInputPath(filePath);
+// dialog.setOutputPath(outputPath);// 你想导出的地址 默认输出路径：包名/cache/videoCompress/compressedMp4.mp4
+dialog.setCallback(new VideoCompressDialog.OnCallback() {
     @Override
     public void success(String successPath) {
-        Toast.makeText(MainActivity.this, "压缩成功，path： " + successPath, Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "成功，path： " + successPath, Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void fail(int code, String message) {
-        Toast.makeText(MainActivity.this, "压缩失败，message： " + message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "失败，message： " + message, Toast.LENGTH_SHORT).show();
     }
 });
 dialog.show();
@@ -101,19 +105,22 @@ public void onRequestPermissionsResult(int requestCode, String[] permissions, in
 自带`VideoCompressDialog`弹窗，用法超级简单：
 
 ```java
-String inputFilePath = "输入你需要压缩的视频地址";
-VideoCompressDialog dialog = new VideoCompressDialog(this);
-dialog.setInputPath(inputFilePath);
-dialog.setCallback(new VideoCompressDialog.OnCallback() {
+// String cameraPath = Environment.getExternalStorageDirectory().getPath() + "/DCIM/Camera/";
+// VideoCompressDialog.mkdir(cameraPath);
+// String outputPath = cameraPath + System.currentTimeMillis() + ".mp4";
 
+VideoCompressDialog dialog = new VideoCompressDialog(this);
+dialog.setInputPath(filePath);
+// dialog.setOutputPath(outputPath);// 你想导出的地址 默认输出路径：包名/cache/videoCompress/compressedMp4.mp4
+dialog.setCallback(new VideoCompressDialog.OnCallback() {
     @Override
     public void success(String successPath) {
-        Toast.makeText(MainActivity.this, "压缩成功，path： " + successPath, Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "成功，path： " + successPath, Toast.LENGTH_SHORT).show();
     }
-
+    
     @Override
     public void fail(int code, String message) {
-        Toast.makeText(MainActivity.this, "压缩失败，message： " + message, Toast.LENGTH_SHORT).show();
+        Toast.makeText(MainActivity.this, "失败，message： " + message, Toast.LENGTH_SHORT).show();
     }
 });
 dialog.show();
