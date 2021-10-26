@@ -152,7 +152,7 @@ VideoCompressTask task = VideoCompress.compressVideoLow(inputPath, outputPath, n
     public void onProgress(float percent) {
         // Progress 进度
     }
-    });
+});
 ```
 ### 中断任务：
 ```java
