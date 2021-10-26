@@ -3,7 +3,6 @@
     <string name="compressing">压缩中...</string>
     <string name="cancel">取消</string>
     <string name="compress_cancel">取消转码。</string>
-    <string name="compress_success">压缩成功。</string>
     <string name="compress_error">压缩失败。</string>
 
 </resources>
