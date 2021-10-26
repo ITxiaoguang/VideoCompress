@@ -21,7 +21,7 @@ import java.util.ArrayList;
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_CODE_PERMISSION_CAMERA = 10011;
 
-    private static final int REQUEST_CODE_FILE = 10;//文件
+    private static final int REQUEST_CODE_VIDEO = 10;// 视频
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,41 +65,41 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void filePicker() {
-        String[] zips = {"zip", "rar"};
-        String[] doc = {"doc", "docx"};
-        String[] ppt = {"ppt", "pptx"};
-        String[] pdf = {"pdf"};
-        String[] txt = {"txt"};
-        String[] apk = {"apk"};
-        String[] xls = {"xls", "xlsx"};
-        String[] music = {"m3u", "m4a", "m4b", "m4p", "ogg", "wma", "wmv", "ogg", "rmvb", "mp2", "mp3", "aac", "awb", "amr", "mka"};
+//        String[] zips = {"zip", "rar"};
+//        String[] doc = {"doc", "docx"};
+//        String[] ppt = {"ppt", "pptx"};
+//        String[] pdf = {"pdf"};
+//        String[] txt = {"txt"};
+//        String[] apk = {"apk"};
+//        String[] xls = {"xls", "xlsx"};
+//        String[] music = {"m3u", "m4a", "m4b", "m4p", "ogg", "wma", "wmv", "ogg", "rmvb", "mp2", "mp3", "aac", "awb", "amr", "mka"};
         FilePickerBuilder.getInstance()
                 .setMaxCount(1)
 //                .setSelectedFiles(docPaths)
 //                .setActivityTheme(R.style.DarkTheme2)
-                .enableCameraSupport(false)
-                .showPic(true)
+//                .enableCameraSupport(false)
+                .showPic(false)
                 .showVideo(true)
                 .enableDocSupport(false)
-                .addFileSupport("Word", doc, R.drawable.ic_file_word)
-                .addFileSupport("压缩包", zips, R.drawable.ic_file_zip)
-                .addFileSupport("PDF", pdf, R.drawable.ic_file_pdf)
-                .addFileSupport("Txt文本", txt, R.drawable.ic_file_txt)
-                .addFileSupport("PPT", ppt, R.drawable.ic_file_ppt)
-                .addFileSupport("安装包", apk, R.drawable.ic_file_zip)
-                .addFileSupport("Excel表格", xls, R.drawable.ic_file_excel)
-                .addFileSupport("音乐", music, R.drawable.ic_file_music)
+//                .addFileSupport("Word", doc, R.drawable.ic_file_word)
+//                .addFileSupport("压缩包", zips, R.drawable.ic_file_zip)
+//                .addFileSupport("PDF", pdf, R.drawable.ic_file_pdf)
+//                .addFileSupport("Txt文本", txt, R.drawable.ic_file_txt)
+//                .addFileSupport("PPT", ppt, R.drawable.ic_file_ppt)
+//                .addFileSupport("安装包", apk, R.drawable.ic_file_zip)
+//                .addFileSupport("Excel表格", xls, R.drawable.ic_file_excel)
+//                .addFileSupport("音乐", music, R.drawable.ic_file_music)
                 .setActivityTitle("请选择文件")
                 .sortDocumentsBy(SortingTypes.name)
                 .withOrientation(ActivityInfo.SCREEN_ORIENTATION_UNSPECIFIED)
-                .pickFile(this, REQUEST_CODE_FILE);
+                .pickFile(this, REQUEST_CODE_VIDEO);
     }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (resultCode == Activity.RESULT_OK) {
-            if (requestCode == REQUEST_CODE_FILE) {//选择文件
+            if (requestCode == REQUEST_CODE_VIDEO) {// 选择视频
                 ArrayList<String> filePaths = data.getStringArrayListExtra(FilePickerConst.KEY_SELECTED_DOCS);
                 String path = filePaths.get(0);
 //                Toast.makeText(this, "地址： " + path, Toast.LENGTH_SHORT).show();
@@ -109,8 +109,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void compress(String filePath) {
+        // String cameraPath = Environment.getExternalStorageDirectory().getPath() + "/DCIM/Camera/";
+        // VideoCompressDialog.mkdir(cameraPath);
+        // String outputPath = cameraPath + System.currentTimeMillis() + ".mp4";
+
         VideoCompressDialog dialog = new VideoCompressDialog(this);
         dialog.setInputPath(filePath);
+        // dialog.setOutputPath(outputPath);// 你想导出的地址 默认输出路径：包名/cache/videoCompress/compressedMp4.mp4
         dialog.setCallback(new VideoCompressDialog.OnCallback() {
 
             @Override

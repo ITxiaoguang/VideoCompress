@@ -4,6 +4,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.os.Environment;
+import android.text.TextUtils;
 import android.util.Log;
 import android.widget.TextView;
 
@@ -53,16 +54,14 @@ public class VideoCompressDialog extends Dialog {
     public VideoCompressDialog(@NonNull Context context) {
         super(context, R.style.dialog_default_style);
         this.context = context;
-        String directory = Environment.getExternalStorageDirectory().getPath() + "/Android/data/" + context.getPackageName() + "/cache/videoCompress";
-        File file = new File(directory);
-        if (!file.exists()) {
-            file.mkdir();
-        }
-        this.outputPath = directory + "/compressedMp4.mp4";
     }
 
     public void setInputPath(String inputPath) {
         this.inputPath = inputPath;
+    }
+
+    public void setOutputPath(String outputPath) {
+        this.outputPath = outputPath;
     }
 
     public void setCallback(OnCallback callback) {
@@ -83,7 +82,29 @@ public class VideoCompressDialog extends Dialog {
 
         getWindow().setBackgroundDrawableResource(R.color.transparent);
 
+        initOutputPath();
+
         compress();
+    }
+
+    /**
+     * 默认输出路径  包名/cache/videoCompress/compressedMp4.mp4
+     */
+    private void initOutputPath() {
+        if (TextUtils.isEmpty(outputPath)) {
+            String path = Environment.getExternalStorageDirectory().getPath() + "/Android/data/" + context.getPackageName();
+            mkdir(path);
+            mkdir(path + "/cache");
+            mkdir(path + "/cache/videoCompress");
+            outputPath = path + "/cache/videoCompress" + "/compressedMp4.mp4";
+        }
+    }
+
+    public static void mkdir(String filePath) {
+        File file = new File(filePath);
+        if (!file.exists()) {
+            file.mkdir();
+        }
     }
 
     /**
