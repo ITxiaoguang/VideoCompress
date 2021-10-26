@@ -2,6 +2,9 @@
 # 一款快速、高效的视频压缩工具。A fast and efficient video compression tool.
 [![](https://jitpack.io/v/ITxiaoguang/VideoCompress.svg)](https://jitpack.io/#ITxiaoguang/VideoCompress)
 
+## 压缩快，不失真。
+## 压缩后视频长宽/2，所以分辨率压缩到原来的1/4，体积约为原来的1/4。
+
 ### 支持自定义输出路径`outputPath`
 
 ### 自带`VideoCompressDialog`弹窗，用法超级简单：
@@ -102,7 +105,7 @@ public void onRequestPermissionsResult(int requestCode, String[] permissions, in
 }
 ```
 
-自带`VideoCompressDialog`弹窗，用法超级简单：
+### 自带`VideoCompressDialog`弹窗，用法超级简单：
 
 ```java
 // String cameraPath = Environment.getExternalStorageDirectory().getPath() + "/DCIM/Camera/";
@@ -124,6 +127,38 @@ dialog.setCallback(new VideoCompressDialog.OnCallback() {
     }
 });
 dialog.show();
+```
+
+### 完整用法：
+
+```java
+VideoCompressTask task = VideoCompress.compressVideoLow(inputPath, outputPath, new VideoCompress.CompressListener() {
+    @Override
+    public void onStart() {
+        // Start Compress
+    }
+
+    @Override
+    public void onSuccess() {
+        // Finish successfully
+    }
+
+    @Override
+    public void onFail() {
+        // Failed
+    }
+
+    @Override
+    public void onProgress(float percent) {
+        // Progress 进度
+    }
+    });
+```
+### 中断任务：
+```java
+if (null != task) {
+    task.cancel(true);
+}
 ```
 
 # 选择文件
