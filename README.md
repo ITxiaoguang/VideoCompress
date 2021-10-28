@@ -54,7 +54,7 @@ dependencies {
 }
 ```
 
-#### 3.加上Android10.0 需要在`AndroidManifest.xml`文件中`application`出加上
+#### 3.Android10.0 需要在`AndroidManifest.xml`文件中`application`出加上
 ```xml
 <application
   android:requestLegacyExternalStorage="true"
