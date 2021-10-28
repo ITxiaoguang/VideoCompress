@@ -3,7 +3,7 @@
 [![](https://jitpack.io/v/ITxiaoguang/VideoCompress.svg)](https://jitpack.io/#ITxiaoguang/VideoCompress)
 
 ## 压缩快，不失真。
-## 压缩后视频长宽/2，所以分辨率压缩到原来的1/4，体积约为原来的1/4。
+## 压缩后视频长宽/2，所以分辨率压缩到原来的1/4，压缩后体积超小。
 
 ### 支持自定义输出路径`outputPath`
 
