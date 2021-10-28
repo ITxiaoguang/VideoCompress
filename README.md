@@ -132,6 +132,9 @@ dialog.show();
 ### 完整用法：
 
 ```java
+// VideoCompress.compressVideoHigh   高质量压缩
+// VideoCompress.compressVideoMedium 中质量压缩
+// VideoCompress.compressVideoLow    低质量压缩
 // inputPath 输入视频地址
 // outputPath 输出视频地址
 VideoCompressTask task = VideoCompress.compressVideoLow(inputPath, outputPath, new VideoCompress.CompressListener() {
