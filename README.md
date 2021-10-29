@@ -2,8 +2,9 @@
 # 一款快速、高效的视频压缩工具。A fast and efficient video compression tool.
 [![](https://jitpack.io/v/ITxiaoguang/VideoCompress.svg)](https://jitpack.io/#ITxiaoguang/VideoCompress)
 
-## 压缩快，不失真。
-## 压缩后视频长宽/2，所以分辨率压缩到原来的1/4，压缩后体积超小。
+- 包超级小
+- 压缩快，不失真
+- 压缩后视频长宽/2，所以分辨率压缩到原来的1/4，压缩后体积超小
 
 ### 支持自定义输出路径`outputPath`
 
@@ -135,7 +136,7 @@ dialog.show();
 // VideoCompress.compressVideoHigh   高质量压缩
 // VideoCompress.compressVideoMedium 中质量压缩
 // VideoCompress.compressVideoLow    低质量压缩
-// inputPath 输入视频地址
+// inputPath  输入视频地址
 // outputPath 输出视频地址
 VideoCompressTask task = VideoCompress.compressVideoLow(inputPath, outputPath, new VideoCompress.CompressListener() {
     @Override
