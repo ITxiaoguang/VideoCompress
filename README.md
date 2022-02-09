@@ -218,3 +218,6 @@ public void onActivityResult(int requestCode, int resultCode, Intent data) {
     }
 }
 ```
+
+### 鸣谢：
+- [mp4parser](https://github.com/sannies/mp4parser)
